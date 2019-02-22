@@ -24,4 +24,37 @@
  * You should have received a copy of the GNU General Public License
  * along with {Plugin Name}. If not, see {License URI}.
  */
+
 defined( 'ABSPATH' ) or die( 'NO direct access allowed' );
+
+/** 1.0
+ * Creates a function that contains the menu-building code */
+
+function vbs_one_plugin_menu() {
+    add_options_page(
+        'My Plugin Options',
+        'My Plugin',
+        'manage_options',
+        'my-unique-identifier',
+        'my_plugin_options' );
+}
+
+/** 1.1
+ * Creates the HTML output for the page (screen) displayed when
+ * the menu item is clicked */
+
+function vbs_one_plugin_options() {
+    if ( !current_user_can( 'manage_options' ) )  {
+        wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+    }
+    echo '<div class="wrap">';
+    echo '<p>Here is where the form would go if I actually had options.</p>';
+    echo '</div>';
+}
+
+/** 1.2
+ * Registers the 1.0 function using the admin_menu action hook.
+ * (If one is adding an admin menu for the Network, use network_admin_menu instead).
+ */
+
+add_action( 'admin_menu', 'vbs_one_plugin_menu' );
