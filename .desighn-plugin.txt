@@ -1,0 +1,21 @@
+ -------------------------------------------------------
+| d8888b. db      db    db  d888b  d888888b d8b   db    |
+| 88  `8D 88      88    88 88' Y8b   `88'   888o  88 db |
+| 88oodD' 88      88    88 88         88    88V8o 88 VP |
+| 88~~~   88      88    88 88  ooo    88    88 V8o88    |
+| 88      88booo. 88b  d88 88. ~8~   .88.   88  V888 db |
+| 88      Y88888P ~Y8888P'  Y888P  Y888888P VP   V8P VP |
+|                                                       |
+|                                                       |
+|  .d8b.   d888b  d88888b d8b   db d8888b.  .d8b.       |
+| d8' `8b 88' Y8b 88'     888o  88 88  `8D d8' `8b      |
+| 88ooo88 88      88ooooo 88V8o 88 88   88 88ooo88      |
+| 88~~~88 88  ooo 88~~~~~ 88 V8o88 88   88 88~~~88      |
+| 88   88 88. ~8~ 88.     88  V888 88  .8D 88   88      |
+| YP   YP  Y888P  Y88888P VP   V8P Y8888D' YP   YP      |
+ -------------------------------------------------------
+ 
+ 1) agenda
+ 2) alows somebody to pick a date(+time)
+ 3) this allows them to add a note to date(+time)
+ 4) this note gets displayed on the front-end
