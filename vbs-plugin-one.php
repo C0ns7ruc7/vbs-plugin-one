@@ -33,15 +33,7 @@ if ( is_admin() ){
     require_once plugin_dir_path( __file__ ) . 'admin/settings-page.php';
     require_once plugin_dir_path( __file__ ) . 'admin/settings-register.php';
     require_once plugin_dir_path( __file__ ) . 'admin/settings-callbacks.php';
-}
-
-// validate plugin settings
-function vbsagendaplugin_validate_options($input) {
-
-    // todo: add validation functionality..
-
-    return $input;
-
+    require_once plugin_dir_path( __file__ ) . 'admin/settings-validate.php';
 }
 
 // default plugin options
