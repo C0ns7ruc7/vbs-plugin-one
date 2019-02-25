@@ -1,4 +1,3 @@
-<!-- <vbs-plugin-one> -->
 <?php
 /**
  * Plugin Name: vbs-plugin-one
@@ -58,3 +57,42 @@ function vbs_one_plugin_options() {
  */
 
 add_action( 'admin_menu', 'vbs_one_plugin_menu' );
+// next plugins should avoid using 'plugin' in the name
+
+
+/** 1.3
+ * run on start
+ */
+function vbs_one_on_activation(){ // public functions need unique prefix, else class.
+    if ( ! current_user_can('activate_plugins') ) return;
+
+    add_option( 'vbs_one_posts_per_page', 10 );
+    add_option( 'vbs_one_show_welcome_page', true );
+}
+register_activation_hook( __FILE__, 'vbs_one_on_activation');
+
+/** 1.4
+ * run on deactivation
+ */
+function vbs_one_on_deactivation() {
+
+    if ( ! current_user_can( 'activate_plugins' ) ) return;
+
+    flush_rewrite_rules();
+
+}
+register_deactivation_hook( __FILE__, 'vbs_one_on_deactivation' );
+
+/** 1.5
+ * run on uninstall
+ */
+
+function vbs_one_on_uninstall() {
+
+    if ( ! current_user_can( 'activate_plugins' ) ) return;
+
+    delete_option( 'vbs_one_posts_per_page', 10 );
+    delete_option( 'vbs_one_show_welcome_page', true );
+
+}
+register_uninstall_hook( __FILE__, 'vbs_one_on_uninstall' );
