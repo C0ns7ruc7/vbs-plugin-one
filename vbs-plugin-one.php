@@ -43,3 +43,20 @@ function vbsagendaplugin_validate_options($input) {
     return $input;
 
 }
+
+// default plugin options
+function vbsagendaplugin_options_default() {
+
+    return array(
+        'custom_url'     => 'https://wordpress.org/',
+        'custom_title'   => 'Powered by WordPress',
+        'custom_style'   => 'disable',
+        'custom_message' => '<p class="custom-message">My custom message</p>',
+        'custom_footer'  => 'Special message for users',
+        'custom_toolbar' => false,
+        'custom_scheme'  => 'default',
+    );
+
+}
+
+
