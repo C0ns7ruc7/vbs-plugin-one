@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: vbs-plugin-one
- * Plugin URI:  https://git
+ * Plugin URI:  https://github.com/C0ns7ruc7/vbs-plugin-one
  * Description: Wordpress agenda plugin
- * Version:     1
+ * Version:     1.3.0
  * Author:      Valiant Hekert
- * Author URI:  https://author.example.com/
+ * Author URI:  https://valianthekert.wordpress.com/
  * License:     GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: vbspluginone
