@@ -75,7 +75,7 @@ function vbsagendaplugin_add_toplevel_menu() {
 
     add_menu_page(
         'VBSAgendaPlugin Settings',
-        'VBSAgendaPlugin',
+        'VBS Agenda',
         'manage_options',
         'vbsagendaplugin',
         'vbsagendaplugin_display_settings_page',
@@ -85,3 +85,33 @@ function vbsagendaplugin_add_toplevel_menu() {
 
 }
 add_action( 'admin_menu', 'vbsagendaplugin_add_toplevel_menu' );
+
+// add sub-level administrative menu
+function vbsagendaplugin_add_sublevel_menu() {
+
+    /*
+
+    add_submenu_page(
+        string   $parent_slug,
+        string   $page_title,
+        string   $menu_title,
+        string   $capability,
+        string   $menu_slug,
+        callable $function = ''
+    );
+
+    */
+
+    add_submenu_page(
+        'vbsagendaplugin',
+        'General Settings',
+        'Manage agenda',
+        'manage_options',
+        'vbsagendapluginsub',
+        'vbsagendaplugin_display_settings_page'
+    );
+
+}
+add_action( 'admin_menu', 'vbsagendaplugin_add_sublevel_menu' );
+
+
