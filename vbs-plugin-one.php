@@ -77,8 +77,8 @@ function vbsagendaplugin_add_toplevel_menu() {
         'VBSAgendaPlugin Settings',
         'VBSAgendaPlugin',
         'manage_options',
-        'VBSAgendaPlugin',
-        'VBSAgendaPlugin_display_settings_page',
+        'vbsagendaplugin',
+        'vbsagendaplugin_display_settings_page',
         'dashicons-admin-generic',
         null
     );
