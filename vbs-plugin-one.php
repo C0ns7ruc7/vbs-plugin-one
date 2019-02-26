@@ -26,6 +26,17 @@
 
 defined( 'ABSPATH' ) or die( 'NO direct access allowed' );
 
+
+// load text domain
+function vbsagendaplugin_load_textdomain() {
+    load_plugin_textdomain(
+        'vbsagendaplugin',
+        false,
+        plugin_dir_path( __FILE__ ) . 'languages/'
+    );
+}
+add_action( 'plugins_loaded', 'vbsagendaplugin_load_textdomain' );
+
 // when in in admin area
 if ( is_admin() ){
     // include dep
@@ -42,17 +53,15 @@ require_once plugin_dir_path( __file__ ) . 'includes/core-functions.php';
 
 // default plugin options
 function vbsagendaplugin_options_default() {
-
     return array(
         'custom_url'     => 'https://wordpress.org/',
-        'custom_title'   => 'Powered by WordPress',
+        'custom_title'   => esc_html__('Powered by WordPress', 'vbsagendaplugin'),
         'custom_style'   => 'disable',
-        'custom_message' => '<p class="custom-message">My custom message</p>',
-        'custom_footer'  => 'Special message for users',
+        'custom_message' => '<p class="custom-message">'. esc_html__('My custom message', 'vbsagendaplugin') .'</p>',
+        'custom_footer'  => esc_html__('Special message for users', 'vbsagendaplugin'),
         'custom_toolbar' => false,
         'custom_scheme'  => 'default',
     );
-
 }
 
 

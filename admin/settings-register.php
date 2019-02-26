@@ -16,7 +16,7 @@ function vbsagendaplugin_register_settings() {
     register_setting(
         string   $option_group,
         string   $option_name,
-        callable $sanitize_callback
+        callable $sanitize_callback = ''
     );
     */
 
@@ -25,6 +25,7 @@ function vbsagendaplugin_register_settings() {
         'vbsagendaplugin_options',
         'vbsagendaplugin_callback_validate_options'
     );
+
     /*
     add_settings_section(
         string   $id,
@@ -36,14 +37,14 @@ function vbsagendaplugin_register_settings() {
 
     add_settings_section(
         'vbsagendaplugin_section_login',
-        'Customize Login Page',
+        esc_html__('Customize Login Page', 'vbsagendaplugin'),
         'vbsagendaplugin_callback_section_login',
         'vbsagendaplugin'
     );
 
     add_settings_section(
         'vbsagendaplugin_section_admin',
-        'Customize Admin Area',
+        esc_html__('Customize Admin Area', 'vbsagendaplugin'),
         'vbsagendaplugin_callback_section_admin',
         'vbsagendaplugin'
     );
@@ -61,66 +62,65 @@ function vbsagendaplugin_register_settings() {
 
     add_settings_field(
         'custom_url',
-        'Custom URL',
+        esc_html__('Custom URL', 'vbsagendaplugin'),
         'vbsagendaplugin_callback_field_text',
         'vbsagendaplugin',
         'vbsagendaplugin_section_login',
-        [ 'id' => 'custom_url', 'label' => 'Custom URL for the login logo link' ]
+        [ 'id' => 'custom_url', 'label' => esc_html__('Custom URL for the login logo link', 'vbsagendaplugin') ]
     );
 
     add_settings_field(
         'custom_title',
-        'Custom Title',
+        esc_html__('Custom Title', 'vbsagendaplugin'),
         'vbsagendaplugin_callback_field_text',
         'vbsagendaplugin',
         'vbsagendaplugin_section_login',
-        [ 'id' => 'custom_title', 'label' => 'Custom title attribute for the logo link' ]
+        [ 'id' => 'custom_title', 'label' => esc_html__('Custom title attribute for the logo link', 'vbsagendaplugin') ]
     );
 
     add_settings_field(
         'custom_style',
-        'Custom Style',
+        esc_html__('Custom Style', 'vbsagendaplugin'),
         'vbsagendaplugin_callback_field_radio',
         'vbsagendaplugin',
         'vbsagendaplugin_section_login',
-        [ 'id' => 'custom_style', 'label' => 'Custom CSS for the Login screen' ]
+        [ 'id' => 'custom_style', 'label' => esc_html__('Custom CSS for the Login screen', 'vbsagendaplugin') ]
     );
 
     add_settings_field(
         'custom_message',
-        'Custom Message',
+        esc_html__('Custom Message', 'vbsagendaplugin'),
         'vbsagendaplugin_callback_field_textarea',
         'vbsagendaplugin',
         'vbsagendaplugin_section_login',
-        [ 'id' => 'custom_message', 'label' => 'Custom text and/or markup' ]
+        [ 'id' => 'custom_message', 'label' => esc_html__('Custom text and/or markup', 'vbsagendaplugin') ]
     );
 
     add_settings_field(
         'custom_footer',
-        'Custom Footer',
+        esc_html__('Custom Footer', 'vbsagendaplugin'),
         'vbsagendaplugin_callback_field_text',
         'vbsagendaplugin',
         'vbsagendaplugin_section_admin',
-        [ 'id' => 'custom_footer', 'label' => 'Custom footer text' ]
+        [ 'id' => 'custom_footer', 'label' => esc_html__('Custom footer text', 'vbsagendaplugin') ]
     );
 
     add_settings_field(
         'custom_toolbar',
-        'Custom Toolbar',
+        esc_html__('Custom Toolbar', 'vbsagendaplugin'),
         'vbsagendaplugin_callback_field_checkbox',
         'vbsagendaplugin',
         'vbsagendaplugin_section_admin',
-        [ 'id' => 'custom_toolbar', 'label' => 'Remove new post and comment links from the Toolbar' ]
+        [ 'id' => 'custom_toolbar', 'label' => esc_html__('Remove new post and comment links from the Toolbar', 'vbsagendaplugin') ]
     );
 
     add_settings_field(
         'custom_scheme',
-        'Custom Scheme',
+        esc_html__('Custom Scheme', 'vbsagendaplugin'),
         'vbsagendaplugin_callback_field_select',
         'vbsagendaplugin',
         'vbsagendaplugin_section_admin',
-        [ 'id' => 'custom_scheme', 'label' => 'Default color scheme for new users' ]
+        [ 'id' => 'custom_scheme', 'label' => esc_html__('Default color scheme for new users', 'vbsagendaplugin') ]
     );
 }
-
 add_action( 'admin_init', 'vbsagendaplugin_register_settings' );

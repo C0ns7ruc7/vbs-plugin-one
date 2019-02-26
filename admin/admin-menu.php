@@ -25,8 +25,8 @@ function vbsagendaplugin_add_toplevel_menu() {
     */
 
     add_menu_page(
-        'VBSAgendaPlugin Settings',
-        'VBS Agenda',
+        esc_html__('VBSAgendaPlugin Settings', 'vbsagendaplugin'),
+        esc_html__('VBS Agenda', 'vbsagendaplugin'),
         'manage_options',
         'vbsagendaplugin',
         'vbsagendaplugin_display_settings_page',
@@ -61,6 +61,5 @@ function vbsagendaplugin_add_sublevel_menu() {
         'vbsagendapluginsub',
         'vbsagendaplugin_display_settings_page'
     );
-
 }
 add_action( 'admin_menu', 'vbsagendaplugin_add_sublevel_menu' );

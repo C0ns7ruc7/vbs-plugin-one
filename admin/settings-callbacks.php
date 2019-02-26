@@ -10,9 +10,18 @@
 
 defined( 'ABSPATH' ) or die( 'NO direct access allowed' );
 
+// callback: login section
+function vbsagendaplugin_callback_section_login() {
+    echo '<p>'. esc_html__('These settings enable you to customize the WP Login screen.', 'vbsagendaplugin') .'</p>';
+}
+
+// callback: admin section
+function vbsagendaplugin_callback_section_admin() {
+    echo '<p>'. esc_html__('These settings enable you to customize the WP Admin Area.', 'vbsagendaplugin') .'</p>';
+}
+
 // callback: text field
 function vbsagendaplugin_callback_field_text( $args ) {
-
     $options = get_option( 'vbsagendaplugin_options', vbsagendaplugin_options_default() );
 
     $id    = isset( $args['id'] )    ? $args['id']    : '';
@@ -24,9 +33,16 @@ function vbsagendaplugin_callback_field_text( $args ) {
     echo '<label for="vbsagendaplugin_options_'. $id .'">'. $label .'</label>';
 }
 
+// radio field options
+function vbsagendaplugin_options_radio() {
+    return array(
+        'enable'  => esc_html__('Enable custom styles', 'vbsagendaplugin'),
+        'disable' => esc_html__('Disable custom styles', 'vbsagendaplugin')
+    );
+}
+
 // callback: radio field
 function vbsagendaplugin_callback_field_radio( $args ) {
-
     $options = get_option( 'vbsagendaplugin_options', vbsagendaplugin_options_default() );
 
     $id    = isset( $args['id'] )    ? $args['id']    : '';
@@ -34,10 +50,7 @@ function vbsagendaplugin_callback_field_radio( $args ) {
 
     $selected_option = isset( $options[$id] ) ? sanitize_text_field( $options[$id] ) : '';
 
-    $radio_options = array(
-        'enable'  => 'Enable custom styles',
-        'disable' => 'Disable custom styles'
-    );
+    $radio_options = vbsagendaplugin_options_radio();
 
     foreach ( $radio_options as $value => $label ) {
         $checked = checked( $selected_option === $value, true, false );
@@ -46,6 +59,8 @@ function vbsagendaplugin_callback_field_radio( $args ) {
         echo '<span>'. $label .'</span></label><br />';
     }
 }
+
+
 
 // callback: textarea field
 function vbsagendaplugin_callback_field_textarea( $args ) {
@@ -62,6 +77,8 @@ function vbsagendaplugin_callback_field_textarea( $args ) {
     echo '<label for="vbsagendaplugin_options_'. $id .'">'. $label .'</label>';
 }
 
+
+
 // callback: checkbox field
 function vbsagendaplugin_callback_field_checkbox( $args ) {
     $options = get_option( 'vbsagendaplugin_options', vbsagendaplugin_options_default() );
@@ -75,9 +92,22 @@ function vbsagendaplugin_callback_field_checkbox( $args ) {
     echo '<label for="vbsagendaplugin_options_'. $id .'">'. $label .'</label>';
 }
 
+// select field options
+function vbsagendaplugin_options_select() {
+    return array(
+        'default'   => esc_html__('Default',   'vbsagendaplugin'),
+        'light'     => esc_html__('Light',     'vbsagendaplugin'),
+        'blue'      => esc_html__('Blue',      'vbsagendaplugin'),
+        'coffee'    => esc_html__('Coffee',    'vbsagendaplugin'),
+        'ectoplasm' => esc_html__('Ectoplasm', 'vbsagendaplugin'),
+        'midnight'  => esc_html__('Midnight',  'vbsagendaplugin'),
+        'ocean'     => esc_html__('Ocean',     'vbsagendaplugin'),
+        'sunrise'   => esc_html__('Sunrise',   'vbsagendaplugin'),
+    );
+}
+
 // callback: select field
 function vbsagendaplugin_callback_field_select( $args ) {
-
     $options = get_option( 'vbsagendaplugin_options', vbsagendaplugin_options_default() );
 
     $id    = isset( $args['id'] )    ? $args['id']    : '';
@@ -85,27 +115,14 @@ function vbsagendaplugin_callback_field_select( $args ) {
 
     $selected_option = isset( $options[$id] ) ? sanitize_text_field( $options[$id] ) : '';
 
-    $select_options = array(
-
-        'default'   => 'Default',
-        'light'     => 'Light',
-        'blue'      => 'Blue',
-        'coffee'    => 'Coffee',
-        'ectoplasm' => 'Ectoplasm',
-        'midnight'  => 'Midnight',
-        'ocean'     => 'Ocean',
-        'sunrise'   => 'Sunrise',
-
-    );
+    $select_options = vbsagendaplugin_options_select();
 
     echo '<select id="vbsagendaplugin_options_'. $id .'" name="vbsagendaplugin_options['. $id .']">';
 
     foreach ( $select_options as $value => $option ) {
-
         $selected = selected( $selected_option === $value, true, false );
 
         echo '<option value="'. $value .'"'. $selected .'>'. $option .'</option>';
-
     }
 
     echo '</select> <label for="vbsagendaplugin_options_'. $id .'">'. $label .'</label>';
