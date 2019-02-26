@@ -36,6 +36,10 @@ if ( is_admin() ){
     require_once plugin_dir_path( __file__ ) . 'admin/settings-validate.php';
 }
 
+// general functionality dep
+require_once plugin_dir_path( __file__ ) . 'includes/core-functions.php';
+
+
 // default plugin options
 function vbsagendaplugin_options_default() {
 
