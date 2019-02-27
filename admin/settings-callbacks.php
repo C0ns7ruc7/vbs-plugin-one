@@ -60,8 +60,6 @@ function vbsagendaplugin_callback_field_radio( $args ) {
     }
 }
 
-
-
 // callback: textarea field
 function vbsagendaplugin_callback_field_textarea( $args ) {
     $options = get_option( 'vbsagendaplugin_options', vbsagendaplugin_options_default() );
@@ -76,8 +74,6 @@ function vbsagendaplugin_callback_field_textarea( $args ) {
     echo '<textarea id="vbsagendaplugin_options_'. $id .'" name="vbsagendaplugin_options['. $id .']" rows="5" cols="50">'. $value .'</textarea><br />';
     echo '<label for="vbsagendaplugin_options_'. $id .'">'. $label .'</label>';
 }
-
-
 
 // callback: checkbox field
 function vbsagendaplugin_callback_field_checkbox( $args ) {
