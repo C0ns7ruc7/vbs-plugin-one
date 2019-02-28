@@ -49,9 +49,36 @@ function date_picker_meta_box() {
         'date_picker_meta_box',
         'Select Date',
         'vbsagendaplugin_callback_date_select',
-        'post_agenda',
-        'normal',
-        'high'
+        'post_agenda'
     );
 }
 add_action( 'add_meta_boxes', 'date_picker_meta_box' );
+
+function save_date_picker_fields_meta( $post_id ) {
+    // verify nonce
+    if ( !wp_verify_nonce( $_POST['vbs_agenda_nonce'], basename(__FILE__) ) ) {
+        return $post_id;
+    }
+    // check autosave
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+        return $post_id;
+    }
+    // check permissions
+    if ( 'page' === $_POST['post_type'] ) {
+        if ( !current_user_can( 'edit_page', $post_id ) ) {
+            return $post_id;
+        } elseif ( !current_user_can( 'edit_post', $post_id ) ) {
+            return $post_id;
+        }
+    }
+
+    $old = get_post_meta( $post_id, 'date_picker_fields', true );
+    $new = $_POST['date_picker_fields'];
+
+    if ( $new && $new !== $old ) {
+        update_post_meta( $post_id, 'date_picker_fields', $new );
+    } elseif ( '' === $new && $old ) {
+        delete_post_meta( $post_id, 'date_picker_fields', $old );
+    }
+}
+add_action( 'save_post', 'save_date_picker_fields_meta' );
