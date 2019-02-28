@@ -123,3 +123,20 @@ function vbsagendaplugin_callback_field_select( $args ) {
 
     echo '</select> <label for="vbsagendaplugin_options_'. $id .'">'. $label .'</label>';
 }
+
+// callback: date selector
+function vbsagendaplugin_callback_date_select( $args ){
+	global $post;
+	$meta = get_post_meta( $post->ID, 'your_fields', true ); ?>
+
+    <input type="hidden" name="your_meta_box_nonce" value="<?php echo wp_create_nonce( basename(__FILE__) ); ?>">
+
+    <!-- All fields will go here -->
+
+    <label for="agenda-date">Start date:</label>
+
+    <input type="date" id="agenda-date" name="trip-start"
+           value="<?php echo date("Y-m-d"); ?>">
+
+<?php }
+

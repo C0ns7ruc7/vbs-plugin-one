@@ -45,6 +45,7 @@ if ( is_admin() ){
     require_once plugin_dir_path( __file__ ) . 'admin/settings-register.php';
     require_once plugin_dir_path( __file__ ) . 'admin/settings-callbacks.php';
     require_once plugin_dir_path( __file__ ) . 'admin/settings-validate.php';
+    require_once plugin_dir_path( __file__ ) . 'admin/agenda-core.php';
 }
 
 // general functionality dep
