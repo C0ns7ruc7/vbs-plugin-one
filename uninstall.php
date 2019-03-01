@@ -11,8 +11,12 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 }
 
 // delete the plugin options
-delete_option( 'myplugin_options' );
-
+delete_option( 'vbsagendaplugin_options' );
+remove_meta_box(
+    'date_picker_meta_box',
+    'post_agenda',
+    'normal'
+);
 
 /**
  * examples of deleting data

@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) or die( 'NO direct access allowed' );
 function vbsagendaplugin_add_menus() {
 
     add_submenu_page(
-        'options-general.php',
+        'edit.php?post_type=post_agenda',
         'Agenda Settings',
         'Agenda Settings',
         'manage_options',

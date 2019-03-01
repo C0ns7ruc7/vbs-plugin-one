@@ -64,5 +64,3 @@ function vbsagendaplugin_options_default() {
         'custom_scheme'  => 'default',
     );
 }
-
-
