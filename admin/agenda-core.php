@@ -58,44 +58,59 @@ function date_picker_meta_box() {
 }
 add_action( 'add_meta_boxes', 'date_picker_meta_box' );
 
+// callback: date selector
+function vbsagendaplugin_callback_date_select( $post ){
+    $meta = get_post_meta( $post->ID, '_vbsagendaplugin_date_meta_key', true );
+
+    wp_nonce_field( basename( __FILE__ ), 'vbs_agenda_nonce' );
+
+    $currentdate = date("Y-m-d");
+    ?>
+
+    <!-- All fields will go here -->
+
+    <label for="agenda-date"><?php echo esc_html__('Start date', 'vbsagendaplugin'); ?></label>
+
+    <input type="date"
+           id="agenda-date"
+           name="agenda-date"
+           value="<?php echo ($meta ? $meta : $currentdate); ?>"
+           min="<?php echo $currentdate; ?>"
+    >
+    <b><?php echo esc_html__('Old date', 'vbsagendaplugin') . ': ' . ($meta ? $meta: null ); ?></b>
+
+
+<?php }
+
+
 function save_date_picker_fields_meta( $post_id ) {
-    // verify nonce
-    if ( !wp_verify_nonce( $_POST['vbs_agenda_nonce'], basename(__FILE__) ) ) {
-        return $post_id;
-    }
+    $is_autosave = wp_is_post_autosave( $post_id );
+    $is_revision = wp_is_post_revision( $post_id );
 
-    // check autosave
-    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-        return $post_id;
-    }
+    $is_valid_nonce = false;
 
-    // check permissions
-    if ( 'page' === $_POST['agenda_post'] ) {
-        if ( !current_user_can( 'edit_page', $post_id ) ) {
-            return $post_id;
-        } elseif ( !current_user_can( 'edit_post', $post_id ) ) {
-            return $post_id;
+    if ( isset( $_POST[ 'vbs_agenda_nonce' ] ) ) {
+
+        if ( wp_verify_nonce( $_POST[ 'vbs_agenda_nonce' ], basename( __FILE__ ) ) ) {
+
+            $is_valid_nonce = true;
+
         }
+
     }
 
-    $old = get_post_meta( $post_id, '_agenda_date_picker_meta_key', true );
-    $new = $_POST['_agenda_date_picker_meta_key'];
+    if ( $is_autosave || $is_revision || !$is_valid_nonce ) return;
 
-    if ( $new && $new !== $old ) {
+    if ( array_key_exists( 'agenda-date', $_POST ) ) {
+
         update_post_meta(
-            $post_id,
-            'vbsagendaplugin_callback_date_select',
-            $new
+            $post_id,                                            // Post ID
+            '_vbsagendaplugin_date_meta_key',                                // Meta key
+            sanitize_text_field( $_POST[ 'agenda-date' ] ) // Meta value
         );
-    } elseif ( '' === $new && $old ) {
-        delete_post_meta(
-            $post_id,
-            'vbsagendaplugin_callback_date_select',
-            $old
-        );
+
     }
 
-    
 }
 add_action( 'save_post', 'save_date_picker_fields_meta' );
 

@@ -124,25 +124,3 @@ function vbsagendaplugin_callback_field_select( $args ) {
     echo '</select> <label for="vbsagendaplugin_options_'. $id .'">'. $label .'</label>';
 }
 
-// callback: date selector
-function vbsagendaplugin_callback_date_select( $post ){
-	$meta = get_post_meta( $post->ID, 'vbsagendaplugin_callback_date_select', true );
-
-    wp_nonce_field( basename( __FILE__ ), 'vbs_agenda_nonce' );
-	?>
-
-    <!-- All fields will go here -->
-
-    <label for="agenda-date">Start date:</label>
-
-    <input type="date"
-           id="agenda-date"
-           name="agenda-date"
-           value="<?php //selected($meta, date("Y-m-d"));
-           var_dump($meta);
-           ?>"
-           min="<?php echo date("Y-m-d"); ?>"
-    >
-
-
-<?php }
