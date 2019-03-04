@@ -50,7 +50,8 @@ if ( is_admin() ){
 
 // general functionality dep
 require_once plugin_dir_path( __file__ ) . 'includes/core-functions.php';
-
+require_once plugin_dir_path( __file__ ) . 'includes/agenda-post-type.php';
+require_once plugin_dir_path( __file__ ) . 'find-template-files.php';
 
 // default plugin options
 function vbsagendaplugin_options_default() {
