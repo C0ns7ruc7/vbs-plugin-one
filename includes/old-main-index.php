@@ -8,6 +8,8 @@
  * file contains old practice code
  */
 
+defined( 'ABSPATH' ) or die( 'NO direct access allowed' );
+
 /** 1.0
  * Creates a function that contains the menu-building code */
 

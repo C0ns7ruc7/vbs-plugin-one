@@ -8,20 +8,10 @@
  * add post type post-agenda
  */
 
+defined( 'ABSPATH' ) or die( 'NO direct access allowed' );
+
 // add custom post type
 function vbsagendaplugin_add_custom_post_type() {
-
-    /*
-
-        register_post_type(
-            string       $post_type,
-            array|string $args = array()
-        )
-
-        For a list of $args, check out:
-        https://developer.wordpress.org/reference/functions/register_post_type/
-
-    */
 
     $args = array(
         'labels'             => array( 'name' => 'Agendas' ),
@@ -55,3 +45,32 @@ function vbsagendaplugin_date_picker_meta_box() {
     );
 }
 add_action( 'add_meta_boxes', 'vbsagendaplugin_date_picker_meta_box' );
+
+function vbsagendaplugin_pre_get_posts( $query ) {
+
+    // do not modify queries in the admin
+    if( is_admin() ) {
+
+        return $query;
+
+    }
+
+
+    // only modify queries for 'event' post type
+    if( isset($query->query_vars['post_type']) &&
+        $query->query_vars['post_type'] == 'post-agenda' ) {
+
+        $query->set('orderby', 'meta_value');
+        $query->set('meta_key', '_vbsagendaplugin_date_meta_key');
+        $query->set('order', 'ASC');
+        $query->set( 'posts_per_page', -1 );
+
+    }
+
+
+    // return
+    return $query;
+
+}
+
+add_action('pre_get_posts', 'vbsagendaplugin_pre_get_posts');
