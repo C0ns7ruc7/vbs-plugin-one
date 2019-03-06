@@ -37,8 +37,6 @@
 
                 if( isset($date_skip )){
 
-//                    foreach ($date_skip as $dateskipped):
-
                     while ($date_skip[0] > 0) : ?>
 
                         <?php --$date_skip[0];?>
@@ -50,7 +48,9 @@
                                 <div class="card-body">
 
                                     <?php echo (
+
                                         ($date_meta_array[0] - $date_skip[0])
+
                                     ); ?>
 
                                 </div>
@@ -72,7 +72,9 @@
                                 <div class="card-body">
 
                                     <?php echo (
+
                                         ($date_meta_array[1] - $date_skip[1])
+
                                     ); ?>
 
                                 </div>
@@ -89,7 +91,7 @@
 
                             <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
 
-                                <div href="" class="btn btn-light card h-100">
+                                <div class="btn btn-light card h-100">
 
                                     <div class="card-body">
 
@@ -106,8 +108,6 @@
                         <?php
 
                     endwhile;
-
-//                    endforeach;
 
                 }
 
