@@ -14,104 +14,145 @@
 
         <div class="row no-gutters">
 
-            <?php if ( have_posts() ) : while( have_posts() ) : the_post();
+            <?php if ( have_posts() ) : while( have_posts() ) : the_post(); // get the wordpress loop
 
-                $costum_meta = get_post_meta(
+                $costum_meta = get_post_meta( // get the database date selection
                         $post->ID,
                         '_vbsagendaplugin_date_meta_key',
                         true
                 );
 
-                if(isset($date_meta_array)){
+                if(isset($date_meta_array)){ // is this second loop?
 
-                    $date_meta_array_old = $date_meta_array;
-                    $date_meta_array = explode("-", $costum_meta);
+                    $date_meta_array_old = $date_meta_array; //
+                    $date_meta_array = explode("-", $costum_meta); // get individual data
 
                     $date_skip[0] = $date_meta_array[0] - $date_meta_array_old[0]; // year
                     $date_skip[1] = $date_meta_array[1] - $date_meta_array_old[1]; // month
                     $date_skip[2] = $date_meta_array[2] - $date_meta_array_old[2]; // day
 
-                }else{
+                }else{ // run on first loop
+
                     $date_meta_array = explode("-", $costum_meta);
+
+                    $date_skip[0] = 0; // year
+                    $date_skip[1] = 0; // month
+                    $date_skip[2] = 0; // day
                 }
 
-                if( isset($date_skip )){
 
-                    while ($date_skip[0] > 0) : ?>
 
-                        <?php --$date_skip[0];?>
+                while ($date_skip[0] > 0) : // display the year change ?>
 
-                        <div class="col-12">
+                    <?php --$date_skip[0];?>
 
-                            <div class="card h-100">
+                    <div class="col-12">
 
-                                <div class="card-body">
+                        <div class="card h-100">
 
-                                    <?php echo (
+                            <div class="card-body">
 
-                                        ($date_meta_array[0] - $date_skip[0])
+                                <?php echo (
 
-                                    ); ?>
+                                    ($date_meta_array[0] - $date_skip[0]) // years
 
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    <?php endwhile;
-
-                    while ($date_skip[1] > 0) : ?>
-
-                        <?php --$date_skip[1];?>
-
-                        <div class="col-12">
-
-                            <div class="card h-100">
-
-                                <div class="card-body">
-
-                                    <?php echo (
-
-                                        ($date_meta_array[1] - $date_skip[1])
-
-                                    ); ?>
-
-                                </div>
+                                );
+                                $date_skip[1] = $date_meta_array[1] // reset months ?>
 
                             </div>
 
                         </div>
 
-                    <?php endwhile; ?>
+                    </div>
 
-                    <?php while ($date_skip[2] > 1) : ?>
+                <?php endwhile;
+
+                while ($date_skip[1] > 0) : // display the changed months ?>
+
+                    <?php if($date_meta_array[2] < 0):
+                        // if the date has negative days, only hapens with end-of-month
+
+                        $date_skip[2] = cal_days_in_month(
+                                CAL_GREGORIAN,
+                                $date_meta_array[1], // month
+                                $date_meta_array[0] // year
+                        ) - $date_meta_array[2]; // days
+                    endif; ?>
+
+                    <?php while ($date_skip[2] > 1) : // display the changed days ?>
 
                         <?php --$date_skip[2];?>
 
-                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
 
-                                <div class="btn btn-light card h-100">
+                            <div class="btn btn-light card h-100">
 
-                                    <div class="card-body">
+                                <div class="card-body">
 
-                                        <?php echo (
-                                            ($date_meta_array[2] - $date_skip[2])
-                                        ); ?>
-
-                                    </div>
+                                    <?php echo (
+                                    ($date_meta_array[2] - $date_skip[2]) // empty days
+                                    ); ?>
 
                                 </div>
 
                             </div>
 
-                        <?php
+                        </div>
 
-                    endwhile;
+                    <?php
 
-                }
+                    endwhile; ?>
 
-            ?>
+                    <?php --$date_skip[1]; ?>
+
+                    <div class="col-12">
+
+                        <div class="card h-100">
+
+                            <div class="card-body">
+
+                                <?php echo (
+
+                                    ($date_meta_array[1] - $date_skip[1]) // months
+
+                                );
+                                $date_skip[2] = $date_meta_array[2] // reset days ?>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                <?php endwhile; ?>
+
+                <?php while ($date_skip[2] > 1) : // display the changed days ?>
+
+                    <?php --$date_skip[2];?>
+
+                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+
+                        <div class="btn btn-light card h-100">
+
+                            <div class="card-body">
+
+                                <?php echo (
+                                    ($date_meta_array[2] - $date_skip[2]) // empty days
+                                ); ?>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <?php
+
+                endwhile;
+
+
+
+            // display the filled days ?>
 
                 <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
 
@@ -119,7 +160,7 @@
 
                         <div class="card-body">
 
-                            <h2><?php echo $date_meta_array[2];?></h2>
+                            <h2><?php echo $date_meta_array[2]; /* filled days */ ?></h2>
 
                             <p><?php the_title(); ?></p>
 
