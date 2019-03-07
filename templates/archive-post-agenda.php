@@ -38,9 +38,34 @@
                     $date_skip[0] = 0; // year
                     $date_skip[1] = 0; // month
                     $date_skip[2] = 0; // day
+
                 }
 
+                $daysmonth = cal_days_in_month(CAL_GREGORIAN, $date_meta_array[1], $date_meta_array[0]);
 
+                if ($date_skip[2] < 0) : // display the changed days after the filled ones ?>
+
+                    <?php ++$date_skip[2]; ?>
+
+                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+
+                        <div class="btn btn-light card h-100">
+
+                            <div class="card-body">
+
+                                <?php echo (
+                                ( $date_skip[2]) // empty days
+                                ); ?>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                <?php
+
+                endif;
 
                 while ($date_skip[0] > 0) : // display the year change ?>
 
@@ -67,43 +92,9 @@
 
                 <?php endwhile;
 
-                while ($date_skip[1] > 0) : // display the changed months ?>
+                while ($date_skip[1] > 0) : // display the changed months
 
-                    <?php if($date_meta_array[2] < 0):
-                        // if the date has negative days, only hapens with end-of-month
-
-                        $date_skip[2] = cal_days_in_month(
-                                CAL_GREGORIAN,
-                                $date_meta_array[1], // month
-                                $date_meta_array[0] // year
-                        ) - $date_meta_array[2]; // days
-                    endif; ?>
-
-                    <?php while ($date_skip[2] > 1) : // display the changed days ?>
-
-                        <?php --$date_skip[2];?>
-
-                        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-
-                            <div class="btn btn-light card h-100">
-
-                                <div class="card-body">
-
-                                    <?php echo (
-                                    ($date_meta_array[2] - $date_skip[2]) // empty days
-                                    ); ?>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    <?php
-
-                    endwhile; ?>
-
-                    <?php --$date_skip[1]; ?>
+                    --$date_skip[1]; ?>
 
                     <div class="col-12">
 
@@ -116,6 +107,8 @@
                                     ($date_meta_array[1] - $date_skip[1]) // months
 
                                 );
+                                echo("<br>" . $daysmonth);
+
                                 $date_skip[2] = $date_meta_array[2] // reset days ?>
 
                             </div>
@@ -149,8 +142,6 @@
                     <?php
 
                 endwhile;
-
-
 
             // display the filled days ?>
 
