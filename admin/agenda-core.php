@@ -29,7 +29,7 @@ function vbsagendaplugin_callback_date_select( $post ){
            value="<?php echo ($meta ? $meta : $currentdate); ?>"
            min="<?php echo $currentdate; ?>"
     >
-    <b><?php echo esc_html__('Old date', 'vbsagendaplugin') . ': ' . ($meta ? $meta: esc_html__('Never', 'vbsagendaplugin') ); ?></b>
+    <br><b><?php echo esc_html__('Old date', 'vbsagendaplugin') . ': ' . ($meta ? $meta: esc_html__('Today', 'vbsagendaplugin') ); ?></b>
 
 <?php }
 

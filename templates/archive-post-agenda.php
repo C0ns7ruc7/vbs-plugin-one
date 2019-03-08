@@ -47,7 +47,7 @@
 
                     <?php ++$date_skip[2]; ?>
 
-                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    <section class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
 
                         <div class="btn btn-light card h-100">
 
@@ -61,7 +61,7 @@
 
                         </div>
 
-                    </div>
+                    </section>
 
                 <?php
 
@@ -71,7 +71,7 @@
 
                     <?php --$date_skip[0];?>
 
-                    <div class="col-12">
+                    <section class="col-12 m-1">
 
                         <div class="card h-100">
 
@@ -88,7 +88,7 @@
 
                         </div>
 
-                    </div>
+                    </section>
 
                 <?php endwhile;
 
@@ -96,7 +96,7 @@
 
                     --$date_skip[1]; ?>
 
-                    <div class="col-12">
+                    <section class="col-12 mt-1">
 
                         <div class="card h-100">
 
@@ -115,7 +115,7 @@
 
                         </div>
 
-                    </div>
+                    </section>
 
                 <?php endwhile; ?>
 
@@ -123,7 +123,7 @@
 
                     <?php --$date_skip[2];?>
 
-                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    <section class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
 
                         <div class="btn btn-light card h-100">
 
@@ -137,7 +137,7 @@
 
                         </div>
 
-                    </div>
+                    </section>
 
                     <?php
 
@@ -145,7 +145,7 @@
 
             // display the filled days ?>
 
-                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                <section class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
 
                     <a href="<?php the_permalink(); ?>" class="btn btn-light card h-100">
 
@@ -159,7 +159,7 @@
 
                     </a>
 
-                </div>
+                </section>
 
             <?php endwhile; endif; ?>
 

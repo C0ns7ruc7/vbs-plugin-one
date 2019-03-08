@@ -13,9 +13,11 @@
         <div class="card mb-2">
             <div class="card-body">
                 <h1><?php the_title(); ?></h1>
+                <?php echo( get_post_meta( $post->ID, '_vbsagendaplugin_date_meta_key', true ) );?>
 
-                <?php the_content(); ?>
-                <?php var_dump( get_post_meta( $post->ID, '_vbsagendaplugin_date_meta_key', true ) );?>
+                <arcticle>
+                    <?php the_content(); ?>
+                </arcticle>
 
             </div>
         </div>
