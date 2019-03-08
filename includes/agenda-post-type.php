@@ -40,7 +40,7 @@ function vbsagendaplugin_date_picker_meta_box() {
         'Select Date',
         'vbsagendaplugin_callback_date_select',
         'post-agenda',
-        'normal',
+        'side',
         'high'
     );
 }
