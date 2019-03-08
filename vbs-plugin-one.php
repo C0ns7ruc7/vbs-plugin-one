@@ -40,12 +40,12 @@ add_action( 'plugins_loaded', 'vbsagendaplugin_load_textdomain' );
 // when in in admin area
 if ( is_admin() ){
     // include dep
-    require_once plugin_dir_path( __file__ ) . 'admin/admin-menu.php';
-    require_once plugin_dir_path( __file__ ) . 'admin/settings-page.php';
-    require_once plugin_dir_path( __file__ ) . 'admin/settings-register.php';
-    require_once plugin_dir_path( __file__ ) . 'admin/settings-callbacks.php';
-    require_once plugin_dir_path( __file__ ) . 'admin/settings-validate.php';
-    require_once plugin_dir_path( __file__ ) . 'admin/agenda-core.php';
+    require_once plugin_dir_path( __file__ ) . 'admin/vbs-agenda-admin-menu.php';
+    require_once plugin_dir_path( __file__ ) . 'admin/vbs-agenda-page.php';
+    require_once plugin_dir_path( __file__ ) . 'admin/vbs-agenda-register.php';
+    require_once plugin_dir_path( __file__ ) . 'admin/vbs-agenda-callbacks.php';
+    require_once plugin_dir_path( __file__ ) . 'admin/vbs-agenda-validate.php';
+    require_once plugin_dir_path( __file__ ) . 'admin/vbs-agenda-safe.php';
 }
 
 // general functionality dep
