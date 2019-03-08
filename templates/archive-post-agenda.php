@@ -107,7 +107,7 @@
                                     ($date_meta_array[1] - $date_skip[1]) // months
 
                                 );
-                                echo("<br>" . $daysmonth);
+                                echo("<br> days: " . $daysmonth);
 
                                 $date_skip[2] = $date_meta_array[2] // reset days ?>
 
