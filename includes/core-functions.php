@@ -143,3 +143,43 @@ function vbsagendaplugin_custom_admin_scheme( $user_id ) {
 }
 add_action( 'user_register', 'vbsagendaplugin_custom_admin_scheme' );
 
+/**
+ * load stylesheets
+ */
+
+function vbsagendaplugin_load_stylesheets(){
+    wp_enqueue_script(
+        'bootstrap', // sheet name
+        plugin_dir_url( __FILE__ ) . 'public/css/bootstrap.min.css', // link to Dir
+        array(), // dependant stylesheets
+        false, // version
+        'all' // applied on
+    );
+
+    wp_enqueue_script(
+        'stylesheet',
+        plugin_dir_url( __FILE__ ) . 'public//style.css',
+        array(),
+        false,
+        'all'
+    );
+
+    wp_enqueue_script(
+        'bootstrap',
+        plugin_dir_url( __FILE__ ) . 'public/js/bootstrap.min.js',
+        array(),
+        false,
+        true
+    );
+
+    wp_deregister_script('jquery'); // unloads script by this name
+
+    wp_enqueue_script(
+        'jquery',
+        plugin_dir_url( __FILE__ ) . 'public/js/jquery.3-3-1.min.js',
+        '',
+        1,
+        true // footer y/n
+    );
+}
+add_action('wp_enqueue_scripts', 'vbsagendaplugin_load_stylesheets'); // add to style/scripts
